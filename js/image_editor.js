@@ -5,42 +5,62 @@
  * @author Robert C. Duvall
  */
 
-// where to find the img in the document (since it has no ID)
-function getImage() {
-    return document.getElementById('imageContainer').getElementsByTagName('img')[0];
-}
-
-// adding an image by setting its src url
-function addImage() {
-    if (this.value.length) {
-        getImage().src = this.value;
+class ImageEditor {
+    constructor () {
+        // nothing needs to be set here because image 'property' takes care of itself
     }
-    return true;
+
+    // where to find the img in the document (since it has no ID)
+    get image() {
+        return document.getElementById('imageContainer').getElementsByTagName('img')[0];
+    }
+
+    // adding an image by setting its src url
+    set image(imgURL) {
+        if (imgURL.length) {
+            this.image.src = imgURL;
+        }
+    }
+
+    // edit image simply by css style properties!
+    displayImage() {
+        var filters = this.getFilters();
+        //console.log(filters.join(' '));
+        this.image.style.filter = filters.join(' ');
+    }
+
+    // returns a list of all filter values, whether they have changed or not
+    getFilters () {
+        var filters = [];
+        document.querySelectorAll('input[type=range]').forEach(function (element) {
+            var unit = (element.id === 'blur' ? 'px' : '%');
+            filters.push(element.id + '(' + element.value + unit + ')');
+        });
+        return filters;
+    }
 }
 
-// edit image simply by css style properties!
-function editImage() {
-    var filters = [];
-    document.querySelectorAll('input[type=range]').forEach(function (element) {
-        var unit = (element.id === 'blur' ? 'px' : '%');
-        filters.push(element.id + '(' + element.value + unit + ')');
-    });
-    //console.log(filters.join(' '));
-    getImage().style.filter = filters.join(' ');
-    return true;
-}
-
-
+var editor = new ImageEditor();
 // on pressing return, change image
-document.getElementById('imgUrl').addEventListener('change', addImage, false);
+document.getElementById('imgUrl').addEventListener('change', evt => {
+    editor.image = evt.target.value;
+    return true;
+}, false);
 // when sliders change, update image
 document.querySelectorAll('input[type=range]').forEach(function (element) {
-    element.addEventListener('change', editImage, false);
-    element.addEventListener('mousemove', editImage, false);
+    element.addEventListener('change', function() {
+        editor.displayImage();
+        return true;
+    }, false);
+    // similar semantics as above but different syntax
+    element.addEventListener('mousemove', () => {
+        editor.displayImage();
+        return true;
+    }, false);
 });
-// reset sliders back to their original values on press of 'reset'
+// reset sliders back to their original values on press of 'reset', then display new version of image
 document.getElementById('imageEditor').addEventListener('reset', function () {
     setTimeout(function () {
-        editImage();
+        editor.displayImage();
     }, 0);
 });
