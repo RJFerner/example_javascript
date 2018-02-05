@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!-- always put your name in your work -->
+    <meta name="author" content="Vikas Lalwani, Robert C. Duvall">
+    <!-- stop the web browser from ever caching this page or its images -->
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <!-- support for this page -->
+    <link href = "css/image_editor.css" type="text/css" rel="stylesheet">
+    <script src="js/image_editor.js" async></script>
+    <title>Image Editor</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <h1>Image Editor</h1>
+
+        <!--Form for collecting image URL -->
+        <input id="imgUrl" class="url-box" type="url"
+               placeholder="Paste any image link and hit enter to start playing.">
+
+        <!--Controls for CSS filters via range input-->
+        <div class="sliders">
+            <form id="imageEditor">
+                <p>
+                    <label for="grayscale">Grayscale</label>
+                    <input id="grayscale" name="grayscale" type="range" min=0 max=100 value=0>
+                </p>
+                <p>
+                    <label for="blur">Blur</label>
+                    <input id="blur" name="blur" type="range" min=0 max=10 value=0>
+                </p>
+                <p>
+                    <label for="brightness">Brightness</label>
+                    <input id="brightness" name="brightness" type="range" min=0 max=200 value=100>
+                </p>
+                <p>
+                    <label for="contrast">Contrast</label>
+                    <input id="contrast" name="contrast" type="range" min=0 max=200 value=100>
+                </p>
+                <p>
+                    <label for="opacity">Opacity</label>
+                    <input id="opacity" name="opacity" type="range" min=0 max=100 value=100>
+                </p>
+                <p>
+                    <label for="invert">Invert</label>
+                    <input id="invert" name="invert" type="range" min=0 max=100 value=0>
+                </p>
+                <p>
+                    <label for="saturate">Saturate</label>
+                    <input id="saturate" name="saturate" type="range" min=0 max=500 value=100>
+                </p>
+                <p>
+                    <label for="sepia">Sepia</label>
+                    <input id="sepia" name="sepia" type="range" min=0 max=100 value=0>
+                </p>
+                <input type="reset" form="imageEditor" id="reset" value="Reset" />
+            </form>
+        </div>
+
+        <!--container where image will be loaded-->
+        <div id="imageContainer" class="center">
+            <img src="images/puppies.jpg" alt=""/>
+        </div>
+    </div>
+
+    <p>
+        <a href="https://www.sitepoint.com/build-simple-image-editor-with-css-filters-jquery/">Source</a>
+    </p>
+
+</body>
+</html>

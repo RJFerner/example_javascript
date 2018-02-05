@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!-- always put your name in your work -->
+    <meta name="author" content="Robert C. Duvall">
+    <!-- stop the web browser from ever caching this page or its images -->
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <!-- support for this page -->
+    <link rel="stylesheet" href="css/color_changer.css">
+    <script src="js/color_changer.js" async></script>
+    <title>Changing Colors</title>
+</head>
+
+<body>
+<header>Welcome</header>
+
+<main>
+    <div id="js-colored" class="bordered">
+        <!-- nothing here -->
+    </div>
+
+    <section class="bordered">
+        <article>
+            <p>Change Size of Text<br />
+            <input id="range" type="range" min="10" max="48" value="24">
+            </p>
+        </article>
+    </section>
+
+    <section class="bordered">
+        <article>
+            <input id="button" type="button" value="Change by CSS" />
+        </article>
+        <article>
+            <p>Change by Color<br />
+            <input id="color" type="color" value="#008080" />
+            </p>
+        </article>
+        <article>
+            <p>Change by Text<br />
+            <input id="text" type="text" value="#ABCDEF" />
+            </p>
+        </article>
+    </section>
+</main>
+</body>
+</html>
